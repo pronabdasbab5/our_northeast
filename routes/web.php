@@ -23,23 +23,26 @@ Route::middleware(['auth'])->group(function () {
 
     Route::namespace('Auth')->group(function () {
 
-    	Route::namespace('Depart')->group(function () {
-    		Route::get('new_depart', 'DepartController@showDepartAddForm')->name('admin.new_depart_form');
-    		// Route::post('add_depart', 'DepartController@addDepart')->name('admin.add_depart');
-    		// Route::get('all_depart', 'DepartController@allDepart')->name('admin.all_depart');
-    		// Route::get('edit_depart/{departId}', 'DepartController@showDepartEditForm')->name('admin.edit_depart');
-      //       Route::post('update_depart/{departId}', 'DepartController@updateDepart')->name('admin.update_depart');
-    	});
+        Route::namespace('English')->group(function () {
+            Route::namespace('TCategory')->group(function () {
+                Route::get('english_tcategory', 'TCategoryController@allTCategory')->name('english_tcategory');
+                Route::get('edit_etcategory/{tcategoryId}', 'TCategoryController@showTCategoryEditForm')->name('edit_etcategory');
+                Route::post('update_etcategory/{tcategoryId}', 'TCategoryController@updateTCategory')->name('admin.update_etcategory');
+            });
 
-     //    Route::namespace('Professor')->group(function () {
-     //        Route::get('new_professor', 'ProfessorController@showProfessorAddForm')->name('admin.new_professor_form');
-     //        Route::put('add_professor', 'ProfessorController@addProfessor')->name('admin.add_professor');
-     //        Route::get('professor_pic/{filename}', 'ProfessorController@professorPic')->name('professor_pic');
-     //        Route::get('all_professor', 'ProfessorController@allProfessor')->name('admin.all_professor');
-     //        Route::get('edit_professor/{professorId}', 'ProfessorController@showProfessorEditForm')->name('admin.edit_professor');
-     //        Route::put('update_professor/{professorId}', 'ProfessorController@updateProfessor')->name('admin.update_professor');
-     //        Route::get('change_professor_status/{professorId}/{status}', 'ProfessorController@changeStatus')->name('admin.change_professor_status');
-     //        Route::get('delete_professor/{professorId}', 'ProfessorController@deleteProfessor')->name('admin.delete_professor');
-     //    });
+            Route::namespace('SubCategory')->group(function () {
+                Route::get('english_scategory', 'SubCategoryController@allSCategory')->name('english_scategory');
+                // Route::get('edit_etcategory/{tcategoryId}', 'TCategoryController@showTCategoryEditForm')->name('edit_etcategory');
+                // Route::post('update_etcategory/{tcategoryId}', 'TCategoryController@updateTCategory')->name('admin.update_etcategory');
+            });
+        });
+
+        Route::namespace('Assamese')->group(function () {
+            Route::namespace('TCategory')->group(function () {
+                Route::get('assamese_tcategory', 'TCategoryController@allTCategory')->name('assamese_tcategory');
+                Route::get('edit_atcategory/{tcategoryId}', 'TCategoryController@showTCategoryEditForm')->name('edit_atcategory');
+                Route::post('update_atcategory/{tcategoryId}', 'TCategoryController@updateTCategory')->name('admin.update_atcategory');
+            });
+        });
     });
 });

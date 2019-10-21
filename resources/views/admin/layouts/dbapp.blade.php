@@ -68,42 +68,23 @@
                   <li>
                     <a><i class="fa fa-edit"></i> Manage Top-Category <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="#">All Top-Category</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a><i class="fa fa-edit"></i> Majhkjgky <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="#">New Photo</a></li>
-                        <li><a href="#">All Photots</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a><i class="fa fa-edit"></i> Manjhkjh <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="#">New Document</a></li>
-                        <li><a href="#">All Documents</a></li>
+                        <li><a href="{{ route('english_tcategory') }}">English Top-Category</a></li>
+                        <li><a href="{{ route('assamese_tcategory') }}">Assamese Top-Category</a></li>
                     </ul>
                   </li> 
                   <li>
-                    <a><i class="fa fa-edit"></i> Manjhkjhks <span class="fa fa-chevron-down"></span></a>
+                    <a><i class="fa fa-edit"></i> Manage Sub-Category <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a>Manage AQAR<span class="fa fa-chevron-down"></span></a>
+                        <li><a>Assamese Sub-Category<span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="#">New Document</a></li>
-                                <li><a href="#">All Documents</a></li>
+                                <li><a href="{{ route('english_scategory') }}">New Sub-Category</a></li>
+                                <li><a href="#">All Sub-Category</a></li>
                             </ul>
                         </li>
-                        <li><a>Manage SSR<span class="fa fa-chevron-down"></span></a>
+                        <li><a>English Sub-Category<span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="#">New Document</a></li>
-                                <li><a href="#">All Documents</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Manage Student List<span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="#">New Document</a></li>
-                                <li><a href="#">All Documents</a></li>
+                                <li><a href="#">New Sub-Category</a></li>
+                                <li><a href="#">All Sub-Category</a></li>
                             </ul>
                         </li>
                     </ul>

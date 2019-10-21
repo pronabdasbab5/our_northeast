@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call(EnglishTopCategoryTableSeeder::class);
         $this->call(AssameseTopCategoryTableSeeder::class);
+        $this->call(EnglishSubCategoryTableSeeder::class);
     }
 }
