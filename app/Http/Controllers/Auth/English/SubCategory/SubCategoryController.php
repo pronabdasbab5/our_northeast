@@ -18,4 +18,24 @@ class SubCategoryController extends Controller
  
     	return view('admin.auth.english.scategory.all_sub_category', ['allescategoryData' => $allescategoryData]);
     }
+
+    public function showSCategoryEditForm($scategoryId) {
+    	$etcategory        = new ETCategory;
+    	$alletcategoryData = $etcategory->all();
+    	$escategory        = new ESCategory;
+    	$escategoryData    = $escategory->findOrFail($scategoryId);
+    	return view('admin.auth.english.scategory.edit_ecategory', ['escategoryData' => $escategoryData, 'alletcategoryData' => $alletcategoryData]);
+    }
+
+    public function updateSCategory(Request $request, $scategoryId) {
+    	$request->validate([
+    		'etcategory_name' => 'required|numeric',
+    		'escategory_name' => 'required'
+    	]);
+
+        $escategory = new ESCategory;
+        $escategory->where('id', $scategoryId)
+                    ->update(['top_category_id' => $request->input('etcategory_name'), 'sub_category' => strtoupper(strtolower($request->input('escategory_name')))]);
+        return redirect()->back();
+    }
 }

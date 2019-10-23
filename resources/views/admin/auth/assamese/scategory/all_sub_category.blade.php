@@ -7,38 +7,39 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>All Top-Category</h2>
+            <h2>All Sub-Category</h2>
             <div class="clearfix"></div>
           </div>
             <div class="x_content"><br />
-                <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                    <thead>
+                <table id="datatable" class="table table-striped table-bordered">
+                      <thead>
                         <tr>
+                          <tr>
                             <th>Sl No</th>
                             <th>Top-Category</th>
+                            <th>Sub-Category</th>
                             <th>Action</th>
+                            </tr>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @if(count($allAtcategory) > 0)
+                      </thead>
+                      <tbody>
+                        @if(count($allascategoryData) > 0)
                             @php
                                 $cnt = 1;
                             @endphp
-                            @foreach($allAtcategory as $key => $value)
+                            @foreach($allascategoryData as $key => $value)
                                 <tr class="text-bold">
                                     <td>{{ $cnt++ }}</td>
                                     <td>{{ $value->top_category }}</td>
+                                    <td>{{ $value->sub_category }}</td>
                                     <td>
-                                        <a href="{{ route('edit_atcategory', ['tcategoryId' => $value['id']]) }}" class="btn btn-primary text-bold">Edit</a>
-                                        @if($value['status'] == 1)
-                                            <a href="{{ route('new_ascategory', ['tcategoryId' => $value['id']]) }}" class="btn btn-primary text-bold">New Sub-Category</a>
-                                        @endif
+                                        <a href="{{ route('edit_ascategory', ['scategoryId' => $value['id']]) }}" class="btn btn-primary text-bold">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach
                         @endif
-                    </tbody>
-                </table>
+                      </tbody>
+                    </table>
             </div>
           </div>
         </div>

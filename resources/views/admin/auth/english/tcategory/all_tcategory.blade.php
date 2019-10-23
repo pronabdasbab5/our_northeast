@@ -30,6 +30,9 @@
                                     <td>{{ $value->top_category }}</td>
                                     <td>
                                         <a href="{{ route('edit_etcategory', ['tcategoryId' => $value['id']]) }}" class="btn btn-primary text-bold">Edit</a>
+                                        @if($value['status'] == 1)
+                                            <a href="{{ route('new_escategory', ['tcategoryId' => $value['id']]) }}" class="btn btn-primary text-bold">New Sub-Category</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
