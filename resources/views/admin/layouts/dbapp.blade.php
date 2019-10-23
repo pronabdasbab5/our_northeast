@@ -75,20 +75,17 @@
                   <li>
                     <a><i class="fa fa-edit"></i> Manage Sub-Category <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a>Assamese Sub-Category<span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="{{ route('english_scategory') }}">New Sub-Category</a></li>
-                                <li><a href="#">All Sub-Category</a></li>
-                            </ul>
-                        </li>
-                        <li><a>English Sub-Category<span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="#">New Sub-Category</a></li>
-                                <li><a href="#">All Sub-Category</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{{ route('english_scategory') }}">English Sub-Category</a></li>
+                        <li><a href="{{ route('assamese_scategory') }}">Assamese Sub-Category</a></li>
                     </ul>
-                  </li> 
+                  </li>  
+                  <li>
+                    <a><i class="fa fa-edit"></i> Assamese News <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('assamese_new_news_post') }}">New Post</a></li>
+                        <li><a href="#">All Post</a></li>
+                    </ul>
+                  </li>  
                 </ul>
               </div>
 

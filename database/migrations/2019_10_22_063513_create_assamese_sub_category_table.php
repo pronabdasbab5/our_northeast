@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEnglishTopCategoryTable extends Migration
+class CreateAssameseSubCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateEnglishTopCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('english_top_category', function (Blueprint $table) {
+        Schema::create('assamese_sub_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('top_category');
-            $table->integer('status')->nullable();
+            $table->integer('top_category_id');
+            $table->string('sub_category')->collation('utf8_unicode_ci');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateEnglishTopCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('english_top_category');
+        Schema::dropIfExists('assamese_sub_category');
     }
 }

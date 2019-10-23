@@ -11,16 +11,18 @@
             <div class="clearfix"></div>
           </div>
             <div class="x_content"><br />
-                <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                    <thead>
+                <table id="datatable" class="table table-striped table-bordered">
+                      <thead>
                         <tr>
+                          <tr>
                             <th>Sl No</th>
                             <th>Top-Category</th>
                             <th>Sub-Category</th>
                             <th>Action</th>
+                            </tr>
                         </tr>
-                    </thead>
-                    <tbody>
+                      </thead>
+                      <tbody>
                         @if(count($allescategoryData) > 0)
                             @php
                                 $cnt = 1;
@@ -31,13 +33,13 @@
                                     <td>{{ $value->top_category }}</td>
                                     <td>{{ $value->sub_category }}</td>
                                     <td>
-                                        <a href="{{ route('edit_etcategory', ['tcategoryId' => $value['id']]) }}" class="btn btn-primary text-bold">Edit</a>
+                                        <a href="{{ route('edit_escategory', ['scategoryId' => $value['id']]) }}" class="btn btn-primary text-bold">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach
                         @endif
-                    </tbody>
-                </table>
+                      </tbody>
+                    </table>
             </div>
           </div>
         </div>
