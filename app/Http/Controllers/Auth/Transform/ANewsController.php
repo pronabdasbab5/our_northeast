@@ -1,50 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Assamese\News;
+namespace App\Http\Controllers\Auth\Transform;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ATCategory\ATCategory;
-use App\Models\ASCategory\ASCategory;
-use App\Models\ANews\ANews;
 use Intervention\Image\ImageManagerStatic as Image;
 use File;
 use Response;
 use DB;
+use Carbon\Carbon;
 
-class NewsController extends Controller
+class ANewsController extends Controller
 {
     public function newPost() {
-    	$atcategory    = new ATCategory;
-    	$allAtcategory = $atcategory->all();
-    	return view('admin.auth.assamese.news.new_post', ['allAtcategory' => $allAtcategory]);
+    	return view('admin.auth.transform_news.assamese.new_post', ['top_category_id' => 4]);
     }
 
-    public function retriveSubCategory($top_category_id) {
-    	$ascategory       = new ASCategory;
-    	$subcategory_data = $ascategory->where('top_category_id', $top_category_id)
-    									->get(); 	
-    	if(count($subcategory_data) > 0) {
-    		$data = "<option selected disabled>Choose Sub-Category</option>";  
-    		foreach ($subcategory_data as $key => $value) {
-	    		$data = $data."<option value=".$value['id'].">".$value['sub_category']."</option>";
-	    	}
-    	} else
-    		$data = "<option>No need to select category</option>";
+    public function addPost(Request $request, $top_category_id) {
 
-    	print $data;
-    }
-
-    public function addPost(Request $request) {
     	$request->validate([
-    		'top_category' => 'required|numeric',
     		'file'         => 'required|image|mimes:jpeg,png,jpg,gif,svg',
     		'heading'      => 'required',
     		'short_desc'   => 'required',
     		'long_desc'    => 'required',
     	]);
 
-        $anews = new ANews;
         if($request->hasFile('file')) {
             $image        = $request->file('file');
             $file_name    = time().".jpg";
@@ -72,44 +52,40 @@ class NewsController extends Controller
             $image_resize->resize(130, 130);
             $image_resize->save(public_path("assets/small_img/".$file_name));
 
-            $anews->top_category_id = ucwords($request->input('top_category'));
-            $anews->image           = $file_name;
-            $anews->heading         = $request->input('heading');
-            $anews->short_desc      = $request->short_desc;
-            $anews->long_desc       = $request->long_desc;
+            DB::table('assamese_transform_news')
+            		->insert([
+            			'top_category_id' => $top_category_id,
+            			'image' => $file_name,
+            			'heading' => $request->input('heading'),
+            			'short_desc' => $request->input('short_desc'),
+            			'long_desc' => $request->input('long_desc'),
+            			'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            			'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            		]);
 
-            if($anews->save()){
-                if(is_numeric($request->has('sub_category'))){
-                    $anews->where('id', $anews->id)
-                            ->update(['sub_category_id' => $request->input('sub_category')]);
-                }
-                return redirect()->back()->with('msg', 'News has been publish successfully');
-            }
-            else
-                return redirect()->back()->with('msg', 'Something wrong while adding'); 
+            return redirect()->back()->with('msg', 'News has been publish successfully');
+
         } else
             return redirect()->back()->with('msg', 'Please ! upload image.');  
     }
 
     public function allPost() {
-        return view('admin.auth.assamese.news.all_news');
+        return view('admin.auth.transform_news.assamese.all_news');
     }
 
     public function allPostData(Request $request) {
 
-        $anews = new ANews;
-
         $columns = array( 
                             0 => 'id', 
                             1 => 'topCategory',
-                            2 => 'subCategory',
-                            3 => 'heading',
-                            4 => 'date',
-                            5 => 'status',
-                            6 => 'action',
+                            2 => 'heading',
+                            3 => 'date',
+                            4 => 'status',
+                            5 => 'action',
                         );
 
-        $totalData = $anews->count();
+        $totalData = DB::table('assamese_transform_news')
+        					->count();
 
         $totalFiltered = $totalData; 
 
@@ -120,10 +96,9 @@ class NewsController extends Controller
 
         if(empty($request->input('search.value'))) {            
             
-            $news_data = $anews
-                            ->join('assamese_top_category', 'assamese_news.top_category_id', '=', 'assamese_top_category.id')
-                            ->leftJoin('assamese_sub_category', 'assamese_news.sub_category_id', '=', 'assamese_sub_category.id')
-                            ->select('assamese_news.*', 'assamese_top_category.top_category', 'assamese_sub_category.sub_category')
+            $news_data = DB::table('assamese_transform_news')
+                            ->join('assamese_top_category', 'assamese_transform_news.top_category_id', '=', 'assamese_top_category.id')
+                            ->select('assamese_transform_news.*', 'assamese_top_category.top_category')
                             ->offset($start)
                             ->limit($limit)
                             ->orderBy($order,$dir)
@@ -133,25 +108,25 @@ class NewsController extends Controller
 
             $search = $request->input('search.value'); 
 
-            $news_data = $anews
-                            ->join('assamese_top_category', 'assamese_news.top_category_id', '=', 'assamese_top_category.id')
-                            ->leftJoin('assamese_sub_category', 'assamese_news.sub_category_id', '=', 'assamese_sub_category.id')
-                            ->select('assamese_news.*', 'assamese_top_category.top_category', 'assamese_sub_category.sub_category')
-                            ->where('assamese_news.heading','LIKE',"%{$search}%")
+            $news_data = DB::table('assamese_transform_news')
+                            ->join('assamese_top_category', 'assamese_transform_news.top_category_id', '=', 'assamese_top_category.id')
+                            ->select('assamese_transform_news.*', 'assamese_top_category.top_category')
+                            ->where('assamese_transform_news.heading','LIKE',"%{$search}%")
+                            ->orWhere('assamese_transform_news.short_desc', 'LIKE',"%{$search}%")
+                            ->orWhere('assamese_transform_news.long_desc', 'LIKE',"%{$search}%")
                             ->orWhere('assamese_top_category.top_category', 'LIKE',"%{$search}%")
-                            ->orWhere('assamese_sub_category.sub_category', 'LIKE',"%{$search}%")
                             ->offset($start)
                             ->limit($limit)
                             ->orderBy($order,$dir)
                             ->get();    
 
-            $totalFiltered = $anews
-                            ->join('assamese_top_category', 'assamese_news.top_category_id', '=', 'assamese_top_category.id')
-                            ->leftJoin('assamese_sub_category', 'assamese_news.sub_category_id', '=', 'assamese_sub_category.id')
-                            ->select('assamese_news.*', 'assamese_top_category.top_category', 'assamese_sub_category.sub_category')
-                            ->where('assamese_news.heading','LIKE',"%{$search}%")
+            $totalFiltered = DB::table('assamese_transform_news')
+                            ->join('assamese_top_category', 'assamese_transform_news.top_category_id', '=', 'assamese_top_category.id')
+                            ->select('assamese_transform_news.*', 'assamese_top_category.top_category')
+                            ->where('assamese_transform_news.heading','LIKE',"%{$search}%")
+                            ->orWhere('assamese_transform_news.short_desc', 'LIKE',"%{$search}%")
+                            ->orWhere('assamese_transform_news.long_desc', 'LIKE',"%{$search}%")
                             ->orWhere('assamese_top_category.top_category', 'LIKE',"%{$search}%")
-                            ->orWhere('assamese_sub_category.sub_category', 'LIKE',"%{$search}%")
                             ->count();
         }
 
@@ -167,18 +142,17 @@ class NewsController extends Controller
 
                 if($single_data->status == 1){
                     $val = "<a class=\"btn btn-success\">Published</a>";
-                    $action = "<a class=\"btn btn-primary\" href=\"".route('view_assamese_news', ['newsId' => $single_data->id])."\" target=\"_blank\">view</a><a class=\"btn btn-warning\" href=\"".route('edit_assamese_news', ['newsId' => $single_data->id])."\" target=\"_blank\">Edit</a><a class=\"btn btn-success\" href=\"".route('change_assamese_news_status', ['newsId' => $single_data->id, 'status' => 0])."\">Un-Publish</a><a class=\"btn btn-danger\" href=\"".route('delete_assamese_news', ['newsId' => $single_data->id])."\">Delete</a>";
+                    $action = "<a class=\"btn btn-primary\" href=\"".route('view_assamese_transform_news', ['newsId' => $single_data->id])."\" target=\"_blank\">view</a><a class=\"btn btn-warning\" href=\"".route('edit_assamese_transform_news', ['newsId' => $single_data->id])."\" target=\"_blank\">Edit</a><a class=\"btn btn-success\" href=\"".route('change_assamese_transform_news_status', ['newsId' => $single_data->id, 'status' => 0])."\">Un-Publish</a><a class=\"btn btn-danger\" href=\"".route('delete_assamese_transform_news', ['newsId' => $single_data->id])."\">Delete</a>";
                 }
                 else {
                     $val = "<a class=\"btn btn-success\">Un-Publish</a>";
-                    $action = "<a class=\"btn btn-primary\" href=\"".route('view_assamese_news', ['newsId' => $single_data->id])."\" target=\"_blank\">view</a><a class=\"btn btn-warning\" href=\"".route('edit_assamese_news', ['newsId' => $single_data->id])."\" target=\"_blank\">Edit</a><a class=\"btn btn-success\" href=\"".route('change_assamese_news_status', ['newsId' => $single_data->id, 'status' => 1])."\">Publish</a><a class=\"btn btn-danger\" href=\"".route('delete_assamese_news', ['newsId' => $single_data->id])."\">Delete</a>";
+                    $action = "<a class=\"btn btn-primary\" href=\"".route('view_assamese_transform_news', ['newsId' => $single_data->id])."\" target=\"_blank\">view</a><a class=\"btn btn-warning\" href=\"".route('edit_assamese_transform_news', ['newsId' => $single_data->id])."\" target=\"_blank\">Edit</a><a class=\"btn btn-success\" href=\"".route('change_assamese_transform_news_status', ['newsId' => $single_data->id, 'status' => 1])."\">Publish</a><a class=\"btn btn-danger\" href=\"".route('delete_assamese_transform_news', ['newsId' => $single_data->id])."\">Delete</a>";
                 }
 
                 $nestedData['id']          = $cnt;
                 $nestedData['topCategory'] = $single_data->top_category;
-                $nestedData['subCategory'] = $single_data->sub_category;
                 $nestedData['heading']     = $single_data->heading;
-                $nestedData['date']        = current(explode(" ", current(explode('T', $single_data->created_at))));
+                $nestedData['date']        = $single_data->created_at;
                 $nestedData['status']      = $val;
                 $nestedData['action']      = $action;
 
@@ -199,33 +173,30 @@ class NewsController extends Controller
     }
 
     public function viewNews($newsId) {
-        $anews = new ANews;
-        $data  = $anews->where('assamese_news.id', $newsId)
-                    ->join('assamese_top_category', 'assamese_news.top_category_id', '=', 'assamese_top_category.id')
-                    ->leftJoin('assamese_sub_category', 'assamese_news.sub_category_id', '=', 'assamese_sub_category.id')
-                    ->select('assamese_news.*', 'assamese_top_category.top_category', 'assamese_sub_category.sub_category')
+        $data  = DB::table('assamese_transform_news')->where('assamese_transform_news.id', $newsId)
+                    ->join('assamese_top_category', 'assamese_transform_news.top_category_id', '=', 'assamese_top_category.id')
+                    ->select('assamese_transform_news.*', 'assamese_top_category.top_category')
                     ->get();
 
-       foreach ($data as $key => $value) {
+        foreach ($data as $key => $value) {
 
-            if($value['status'] == 1)
+            if($value->status == 1)
                 $status = "Published";
             else 
                 $status = "Un-Publish";
 
             $data = [
-                'top_category' => $value['top_category'],
-                'sub_category' => $value['sub_category'],
-                'heading'      => $value['heading'],
-                'image'        => $value['image'],
-                'short_desc'   => $value['short_desc'],
-                'long_desc'    => $value['long_desc'],
+                'top_category' => $value->top_category,
+                'heading'      => $value->heading,
+                'image'        => $value->image,
+                'short_desc'   => $value->short_desc,
+                'long_desc'    => $value->long_desc,
                 'status'       => $status,
-                'date'         => current(explode(" ", $value['created_at']))
+                'date'         => current(explode(" ", $value->created_at))
             ];
-       }
+        }
 
-        return view('admin.auth.assamese.news.view_news', ['data' => $data]);
+        return view('admin.auth.transform_news.assamese.view_news', ['data' => $data]);
     }
 
     public function imageView ($file_name) {
@@ -242,46 +213,34 @@ class NewsController extends Controller
     }
 
     public function showNewsEditForm($newsId) {
-        $news = DB::table('assamese_news')
-                    ->where('id', $newsId)
+        $news = DB::table('assamese_transform_news')
+                    ->where('assamese_transform_news.id', $newsId)
+                    ->join('assamese_top_category', 'assamese_transform_news.top_category_id', '=', 'assamese_top_category.id')
+                    ->select('assamese_transform_news.*', 'assamese_top_category.top_category')
                     ->get();
-        $atcategory = DB::table('assamese_top_category')
-                            ->get();
-        $ascategory = DB::table('assamese_sub_category')
-                            ->where('top_category_id', $news[0]->top_category_id)
-                            ->get();
-        return view('admin.auth.assamese.news.edit_post', ['news' => $news, 'atcategory' => $atcategory, 'ascategory' => $ascategory]);
+
+        return view('admin.auth.transform_news.assamese.edit_post', ['news' => $news]);
     }
 
     public function updateNews(Request $request, $newsId) {
         $request->validate([
-            'top_category' => 'required|numeric',
             'file'         => 'image|mimes:jpeg,png,jpg,gif,svg',
             'heading'      => 'required',
             'short_desc'   => 'required',
             'long_desc'    => 'required',
         ]);
 
-        $news = DB::table('assamese_news')
+        $news = DB::table('assamese_transform_news')
                     ->where('id', $newsId)
                     ->get();
 
-        DB::table('assamese_news')
+        DB::table('assamese_transform_news')
                     ->where('id', $newsId)
                     ->update([
-                        'top_category_id' => $request->input('top_category'),
                         'heading' => $request->input('heading'),
                         'short_desc' => $request->input('short_desc'),
                         'long_desc' => $request->input('long_desc'),
                     ]);
-
-        if ($request->has('sub_category')) {
-            DB::table('assamese_news')
-                    ->where('id', $newsId)
-                    ->update([
-                        'sub_category_id' => $request->input('sub_category')
-                    ]);
-        }
 
         if($request->hasFile('file')) {
             $image        = $request->file('file');
@@ -314,7 +273,7 @@ class NewsController extends Controller
             $image_resize->resize(130, 130);
             $image_resize->save(public_path("assets/small_img/".$file_name));
 
-            DB::table('assamese_news')
+            DB::table('assamese_transform_news')
                     ->where('id', $newsId)
                     ->update([
                         'image' => $file_name
@@ -325,7 +284,7 @@ class NewsController extends Controller
     }
 
     public function changeStatus($newsId, $status) {
-        DB::table('assamese_news')
+        DB::table('assamese_transform_news')
                 ->where('id', $newsId)
                 ->update([
                     'status' => $status
@@ -335,7 +294,7 @@ class NewsController extends Controller
 
     public function deleteNews($newsId) {
 
-        $news = DB::table('assamese_news')
+        $news = DB::table('assamese_transform_news')
                     ->where('id', $newsId)
                     ->get();
 
@@ -343,7 +302,7 @@ class NewsController extends Controller
         File::delete(public_path("assets/medium_img/".$news[0]->image));
         File::delete(public_path("assets/small_img/".$news[0]->image));
 
-        DB::table('assamese_news')
+        DB::table('assamese_transform_news')
                     ->where('id', $newsId)
                     ->delete();
             
