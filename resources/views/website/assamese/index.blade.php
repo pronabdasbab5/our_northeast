@@ -54,7 +54,7 @@
                                             </span> -->
                                             <span class="duration"><a href="news-details.php"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }}</a></span>
                                             <h4><a href="{{ route('positive_news_detail', ['news_id' => encrypt($item->id) ]) }}"> {{ $item->heading }}</a></h4>
-                                            <p>{!! $item->short_desc !!}</p>
+                                            <p>{{ $item->short_desc }}</p>
                                         </div>
                                     </div>  
                                     @php

@@ -40,7 +40,7 @@
                         <div class="form-row mb-10">
                             <div class="col-md-8 col-sm-8 col-xs-12 mb-3">
                                 <label for="category">Short Description : </label>
-                                <b>{!! $data['short_desc'] !!}</b>
+                                <b>{{ $data['short_desc'] }}</b>
                             </div> 
                             <div class="col-md-4 col-sm-4 col-xs-12 mb-3">
                                 <img src="{{ route('assamese_positive_news_cover_image', ['file_name' => $data['image']]) }}">
