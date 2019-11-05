@@ -25,7 +25,15 @@
                             <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                 <label for="category">Heading : </label>
                                 <b>{{ $data['heading'] }}</b>
-                            </div>                                 
+                            </div> 
+                            <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                                <label for="category">Author : </label>
+                                <b>{{ $data['author'] }}</b>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                                <label for="category">Time : </label>
+                                <b>{{ $data['time'] }}</b>
+                            </div>                                
                         </div>
                     </div>
                     <div class="well" style="overflow: auto">

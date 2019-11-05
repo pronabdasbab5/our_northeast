@@ -20,6 +20,8 @@ class CreateAssameseLcrNewsTable extends Migration
             $table->string('heading')->collation('utf8_unicode_ci');
             $table->text('short_desc')->collation('utf8_unicode_ci');
             $table->text('long_desc')->collation('utf8_unicode_ci');
+            $table->string('author')->collation('utf8_unicode_ci');
+            $table->string('time');
             $table->integer('status')->default(1)->comment('1 = Publish, 0 = Un-Publish');
             $table->timestamps();
         });

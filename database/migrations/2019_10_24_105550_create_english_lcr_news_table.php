@@ -20,6 +20,8 @@ class CreateEnglishLcrNewsTable extends Migration
             $table->string('heading');
             $table->text('short_desc');
             $table->text('long_desc');
+            $table->string('author');
+            $table->string('time');
             $table->integer('status')->default(1)->comment('1 = Publish, 0 = Un-Publish');
             $table->timestamps();
         });

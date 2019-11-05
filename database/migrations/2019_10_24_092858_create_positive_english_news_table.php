@@ -18,6 +18,8 @@ class CreatePositiveEnglishNewsTable extends Migration
             $table->integer('top_category_id');
             $table->string('image');
             $table->string('heading');
+            $table->string('author');
+            $table->string('time');
             $table->text('short_desc');
             $table->text('long_desc');
             $table->integer('status')->default(1)->comment('1 = Publish, 0 = Un-Publish');

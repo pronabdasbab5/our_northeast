@@ -26,6 +26,8 @@
                             <th>Sl No</th>
                             <th>Top-Category</th>
                             <th>Heading</th>
+                            <th>Author</th>
+                            <th>Time</th>
                             <th>Date</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -63,6 +65,8 @@ $(document).ready(function(){
             { "data": "id" },
             { "data": "topCategory" },
             { "data": "heading" },
+            { "data": "author" },
+            { "data": "time" },
             { "data": "date" },
             { "data": "status" },
             { "data": "action" },
