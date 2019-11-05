@@ -10,29 +10,29 @@
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
     <!-- bootstrap v3.3.6 css -->
-    <link rel="stylesheet" href="{{ asset('web/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/bootstrap.min.css') }}">
     <!-- font-awesome css -->
-    <link rel="stylesheet" href="{{ asset('web/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/font-awesome.min.css') }}">
     <!-- animate css -->
-    <link rel="stylesheet" href="{{ asset('web/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/animate.css') }}">
     <!-- hover-min css -->
-    <link rel="stylesheet" href="{{ asset('web/css/hover-min.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/hover-min.css') }}">
     <!-- magnific-popup css -->
-    <link rel="stylesheet" href="{{ asset('web/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/magnific-popup.css') }}">
     <!-- meanmenu css -->
-    <link rel="stylesheet" href="{{ asset('web/css/meanmenu.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/meanmenu.min.css') }}">
     <!-- owl.carousel css -->
-    <link rel="stylesheet" href="{{ asset('web/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/owl.carousel.css') }}">
     <!-- lightbox css -->
-    <link href="{{ asset('web/css/lightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('web/english/css/lightbox.min.css') }}" rel="stylesheet">
     <!-- custom css -->
-    <link rel="stylesheet" href="{{ asset('web/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/custom.css') }}">
     <!-- style css -->
-    <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/style.css') }}">
     <!-- responsive css -->
-    <link rel="stylesheet" href="{{ asset('web/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/english/css/responsive.css') }}">
     <!-- modernizr js -->
-    <script src="{{ asset('web/js/modernizr-2.8.3.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/modernizr-2.8.3.min.js') }}"></script>
 </head>
 
 <body class="home">
