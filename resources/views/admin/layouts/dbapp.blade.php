@@ -142,8 +142,8 @@
                     <li>
                     <a><i class="fa fa-edit"></i> Upload Video <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="#">New Video</a></li>
-                        <li><a href="#">All Videos</a></li>
+                        <li><a href="{{ route('new_video') }}">New Video</a></li>
+                        <li><a href="{{ route('all_video') }}">All Videos</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Manage Category<span class="fa fa-chevron-down"></span></a>

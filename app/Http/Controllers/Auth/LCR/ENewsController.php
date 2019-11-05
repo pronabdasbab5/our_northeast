@@ -23,6 +23,8 @@ class ENewsController extends Controller
     		'heading'      => 'required',
     		'short_desc'   => 'required',
     		'long_desc'    => 'required',
+            'author'       => 'required',
+            'time'         => 'required',
     	]);
 
         if($request->hasFile('file')) {
@@ -40,14 +42,26 @@ class ENewsController extends Controller
             if(!File::exists(public_path()."/assets/medium_img"))
                 File::makeDirectory(public_path()."/assets/medium_img");
 
+            if(!File::exists(public_path()."/assets/medium_img_index_page"))
+                File::makeDirectory(public_path()."/assets/medium_img_index_page");
+
+            if(!File::exists(public_path()."/assets/positive_news_index_page"))
+                File::makeDirectory(public_path()."/assets/positive_news_index_page");
+
             if(!File::exists(public_path()."/assets/small_img"))
                 File::makeDirectory(public_path()."/assets/small_img");
 
             $image_resize->resize(770, 400);
             $image_resize->save(public_path("assets/big_img/".$file_name));
 
-            $image_resize->resize(270, 230);
+            $image_resize->resize(370, 230);
             $image_resize->save(public_path("assets/medium_img/".$file_name));
+
+            $image_resize->resize(270, 230);
+            $image_resize->save(public_path("assets/medium_img_index_page/".$file_name));
+
+            $image_resize->resize(770, 400);
+            $image_resize->save(public_path("assets/positive_news_index_page/".$file_name));
 
             $image_resize->resize(130, 130);
             $image_resize->save(public_path("assets/small_img/".$file_name));
@@ -59,6 +73,8 @@ class ENewsController extends Controller
             			'heading' => $request->input('heading'),
             			'short_desc' => $request->input('short_desc'),
             			'long_desc' => $request->input('long_desc'),
+                        'author'  => $request->input('author'),
+                        'time'      => $request->input('time'),
             			'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             			'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             		]);
@@ -79,9 +95,11 @@ class ENewsController extends Controller
                             0 => 'id', 
                             1 => 'topCategory',
                             2 => 'heading',
-                            3 => 'date',
-                            4 => 'status',
-                            5 => 'action',
+                            3 => 'author',
+                            4 => 'time',
+                            5 => 'date',
+                            6 => 'status',
+                            7 => 'action',
                         );
 
         $totalData = DB::table('english_lcr_news')
@@ -114,6 +132,8 @@ class ENewsController extends Controller
                             ->where('english_lcr_news.heading','LIKE',"%{$search}%")
                             ->orWhere('english_lcr_news.short_desc', 'LIKE',"%{$search}%")
                             ->orWhere('english_lcr_news.long_desc', 'LIKE',"%{$search}%")
+                            ->orWhere('english_lcr_news.author','LIKE',"%{$search}%")
+                            ->orWhere('english_lcr_news.time','LIKE',"%{$search}%")
                             ->orWhere('english_top_category.top_category', 'LIKE',"%{$search}%")
                             ->offset($start)
                             ->limit($limit)
@@ -126,6 +146,8 @@ class ENewsController extends Controller
                             ->where('english_lcr_news.heading','LIKE',"%{$search}%")
                             ->orWhere('english_lcr_news.short_desc', 'LIKE',"%{$search}%")
                             ->orWhere('english_lcr_news.long_desc', 'LIKE',"%{$search}%")
+                            ->orWhere('english_lcr_news.author','LIKE',"%{$search}%")
+                            ->orWhere('english_lcr_news.time','LIKE',"%{$search}%")
                             ->orWhere('english_top_category.top_category', 'LIKE',"%{$search}%")
                             ->count();
         }
@@ -152,6 +174,8 @@ class ENewsController extends Controller
                 $nestedData['id']          = $cnt;
                 $nestedData['topCategory'] = $single_data->top_category;
                 $nestedData['heading']     = $single_data->heading;
+                $nestedData['author']      = $single_data->author;
+                $nestedData['time']        = $single_data->time;
                 $nestedData['date']        = $single_data->created_at;
                 $nestedData['status']      = $val;
                 $nestedData['action']      = $action;
@@ -188,6 +212,8 @@ class ENewsController extends Controller
             $data = [
                 'top_category' => $value->top_category,
                 'heading'      => $value->heading,
+                'author'       => $value->author,
+                'time'         => $value->time,
                 'image'        => $value->image,
                 'short_desc'   => $value->short_desc,
                 'long_desc'    => $value->long_desc,
@@ -196,7 +222,7 @@ class ENewsController extends Controller
             ];
         }
 
-        return view('admin.auth.lcr_news.assamese.view_news', ['data' => $data]);
+        return view('admin.auth.lcr_news.english.view_news', ['data' => $data]);
     }
 
     public function imageView ($file_name) {
@@ -227,6 +253,8 @@ class ENewsController extends Controller
         $request->validate([
             'file'         => 'image|mimes:jpeg,png,jpg,gif,svg',
             'heading'      => 'required',
+            'author'       => 'required',
+            'time'         => 'required',
             'short_desc'   => 'required',
             'long_desc'    => 'required',
         ]);
@@ -241,6 +269,8 @@ class ENewsController extends Controller
                         'heading' => $request->input('heading'),
                         'short_desc' => $request->input('short_desc'),
                         'long_desc' => $request->input('long_desc'),
+                        'author' => $request->input('author'),
+                        'time' => $request->input('time'),
                     ]);
 
         if($request->hasFile('file')) {
@@ -258,18 +288,32 @@ class ENewsController extends Controller
             if(!File::exists(public_path()."/assets/medium_img"))
                 File::makeDirectory(public_path()."/assets/medium_img");
 
+            if(!File::exists(public_path()."/assets/medium_img_index_page"))
+                File::makeDirectory(public_path()."/assets/medium_img_index_page");
+
+            if(!File::exists(public_path()."/assets/positive_news_index_page"))
+                File::makeDirectory(public_path()."/assets/positive_news_index_page");
+
             if(!File::exists(public_path()."/assets/small_img"))
                 File::makeDirectory(public_path()."/assets/small_img");
 
             File::delete(public_path("assets/big_img/".$news[0]->image));
             File::delete(public_path("assets/medium_img/".$news[0]->image));
+            File::delete(public_path("assets/medium_img_index_page/".$news[0]->image));
+            File::delete(public_path("assets/positive_news_index_page/".$news[0]->image));
             File::delete(public_path("assets/small_img/".$news[0]->image));
 
             $image_resize->resize(770, 400);
             $image_resize->save(public_path("assets/big_img/".$file_name));
 
-            $image_resize->resize(270, 230);
+            $image_resize->resize(370, 230);
             $image_resize->save(public_path("assets/medium_img/".$file_name));
+
+            $image_resize->resize(270, 230);
+            $image_resize->save(public_path("assets/medium_img_index_page/".$file_name));
+
+            $image_resize->resize(770, 400);
+            $image_resize->save(public_path("assets/positive_news_index_page/".$file_name));
 
             $image_resize->resize(130, 130);
             $image_resize->save(public_path("assets/small_img/".$file_name));
@@ -301,6 +345,7 @@ class ENewsController extends Controller
 
         File::delete(public_path("assets/big_img/".$news[0]->image));
         File::delete(public_path("assets/medium_img/".$news[0]->image));
+        File::delete(public_path("assets/medium_img_index_page/".$news[0]->image));
         File::delete(public_path("assets/small_img/".$news[0]->image));
 
         DB::table('english_lcr_news')

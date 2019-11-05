@@ -169,5 +169,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('delete_english_transform_news/{newsId}', 'ENewsController@deleteNews')->name('delete_english_transform_news');
             /** End of English News **/
         });
+
+        Route::namespace('Video')->group(function () {
+            Route::get('new_video', 'VideoController@showVideoAddForm')->name('new_video');
+            Route::post('add_video', 'VideoController@addVideo')->name('add_video');
+            Route::get('all_video', 'VideoController@allVideo')->name('all_video');
+            Route::get('delete_video/{videoId}', 'VideoController@deleteVideo')->name('delete_video');
+        });
     });
 });

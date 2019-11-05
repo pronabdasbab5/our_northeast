@@ -27,6 +27,8 @@
                             <th>Top-Category</th>
                             <th>Sub-Category</th>
                             <th>Heading</th>
+                            <th>Author</th>
+                            <th>Time</th>
                             <th>Date</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -65,6 +67,8 @@ $(document).ready(function(){
             { "data": "topCategory" },
             { "data": "subCategory" },
             { "data": "heading" },
+            { "data": "author" },
+            { "data": "time" },
             { "data": "date" },
             { "data": "status" },
             { "data": "action" },

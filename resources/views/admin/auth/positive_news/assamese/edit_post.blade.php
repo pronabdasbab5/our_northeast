@@ -38,7 +38,25 @@
                                         <strong>{{ $errors->first('heading') }}</strong>
                                     </span>
                                 @enderror
-                            </div>                                 
+                            </div> 
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                <label for="category">Author</label>
+                                <input type="text" class="form-control" value="{{ $news[0]->author }}" name="author" placeholder="Author">
+                                @if($errors->has('author'))
+                                    <span class="invalid-feedback" role="alert" style="color:red">
+                                        <strong>{{ $errors->first('author') }}</strong>
+                                    </span>
+                                @enderror
+                            </div>   
+                            <div class="col-md-6 col-sm-12 col-xs-12 mb-3">
+                                <label for="category">Time</label>
+                                <input type="text" class="form-control" value="{{ $news[0]->time }}" name="time" placeholder="Time">
+                                @if($errors->has('time'))
+                                    <span class="invalid-feedback" role="alert" style="color:red">
+                                        <strong>{{ $errors->first('time') }}</strong>
+                                    </span>
+                                @enderror
+                            </div>                                
                         </div>
                     </div>
                     <div class="well" style="overflow: auto">

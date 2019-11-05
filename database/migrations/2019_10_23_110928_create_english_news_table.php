@@ -19,6 +19,8 @@ class CreateEnglishNewsTable extends Migration
             $table->integer('sub_category_id')->nullable();
             $table->string('image');
             $table->string('heading');
+            $table->string('author');
+            $table->string('time');
             $table->text('short_desc');
             $table->text('long_desc');
             $table->integer('status')->default(0)->comment('1 = Publish, 0 = Un-Publish');

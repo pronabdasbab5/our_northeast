@@ -16,7 +16,7 @@ class NewsController extends Controller
 {
     public function newPost() {
     	$atcategory    = new ATCategory;
-    	$allAtcategory = $atcategory->all();
+    	$allAtcategory = $atcategory->where('status', 1)->get();
     	return view('admin.auth.assamese.news.new_post', ['allAtcategory' => $allAtcategory]);
     }
 
@@ -38,10 +38,13 @@ class NewsController extends Controller
     public function addPost(Request $request) {
     	$request->validate([
     		'top_category' => 'required|numeric',
+            'sub_category' => 'required|numeric',
     		'file'         => 'required|image|mimes:jpeg,png,jpg,gif,svg',
     		'heading'      => 'required',
     		'short_desc'   => 'required',
     		'long_desc'    => 'required',
+            'author'       => 'required',
+            'time'         => 'required',
     	]);
 
         $anews = new ANews;
@@ -60,31 +63,35 @@ class NewsController extends Controller
             if(!File::exists(public_path()."/assets/medium_img"))
                 File::makeDirectory(public_path()."/assets/medium_img");
 
+            if(!File::exists(public_path()."/assets/medium_img_index_page"))
+                File::makeDirectory(public_path()."/assets/medium_img_index_page");
+
             if(!File::exists(public_path()."/assets/small_img"))
                 File::makeDirectory(public_path()."/assets/small_img");
 
             $image_resize->resize(770, 400);
             $image_resize->save(public_path("assets/big_img/".$file_name));
 
-            $image_resize->resize(270, 230);
+            $image_resize->resize(370, 230);
             $image_resize->save(public_path("assets/medium_img/".$file_name));
+
+            $image_resize->resize(270, 230);
+            $image_resize->save(public_path("assets/medium_img_index_page/".$file_name));
 
             $image_resize->resize(130, 130);
             $image_resize->save(public_path("assets/small_img/".$file_name));
 
-            $anews->top_category_id = ucwords($request->input('top_category'));
+            $anews->top_category_id = $request->input('top_category');
+            $anews->sub_category_id = $request->input('sub_category');
             $anews->image           = $file_name;
             $anews->heading         = $request->input('heading');
             $anews->short_desc      = $request->short_desc;
             $anews->long_desc       = $request->long_desc;
+            $anews->author          = $request->author;
+            $anews->time            = $request->time;
 
-            if($anews->save()){
-                if(is_numeric($request->has('sub_category'))){
-                    $anews->where('id', $anews->id)
-                            ->update(['sub_category_id' => $request->input('sub_category')]);
-                }
+            if($anews->save())
                 return redirect()->back()->with('msg', 'News has been publish successfully');
-            }
             else
                 return redirect()->back()->with('msg', 'Something wrong while adding'); 
         } else
@@ -104,9 +111,11 @@ class NewsController extends Controller
                             1 => 'topCategory',
                             2 => 'subCategory',
                             3 => 'heading',
-                            4 => 'date',
-                            5 => 'status',
-                            6 => 'action',
+                            4 => 'author',
+                            5 => 'time',
+                            6 => 'date',
+                            7 => 'status',
+                            8 => 'action',
                         );
 
         $totalData = $anews->count();
@@ -138,6 +147,8 @@ class NewsController extends Controller
                             ->leftJoin('assamese_sub_category', 'assamese_news.sub_category_id', '=', 'assamese_sub_category.id')
                             ->select('assamese_news.*', 'assamese_top_category.top_category', 'assamese_sub_category.sub_category')
                             ->where('assamese_news.heading','LIKE',"%{$search}%")
+                            ->orWhere('assamese_news.author','LIKE',"%{$search}%")
+                            ->orWhere('assamese_news.time','LIKE',"%{$search}%")
                             ->orWhere('assamese_top_category.top_category', 'LIKE',"%{$search}%")
                             ->orWhere('assamese_sub_category.sub_category', 'LIKE',"%{$search}%")
                             ->offset($start)
@@ -150,6 +161,8 @@ class NewsController extends Controller
                             ->leftJoin('assamese_sub_category', 'assamese_news.sub_category_id', '=', 'assamese_sub_category.id')
                             ->select('assamese_news.*', 'assamese_top_category.top_category', 'assamese_sub_category.sub_category')
                             ->where('assamese_news.heading','LIKE',"%{$search}%")
+                            ->orWhere('assamese_news.author','LIKE',"%{$search}%")
+                            ->orWhere('assamese_news.time','LIKE',"%{$search}%")
                             ->orWhere('assamese_top_category.top_category', 'LIKE',"%{$search}%")
                             ->orWhere('assamese_sub_category.sub_category', 'LIKE',"%{$search}%")
                             ->count();
@@ -178,6 +191,8 @@ class NewsController extends Controller
                 $nestedData['topCategory'] = $single_data->top_category;
                 $nestedData['subCategory'] = $single_data->sub_category;
                 $nestedData['heading']     = $single_data->heading;
+                $nestedData['author']      = $single_data->author;
+                $nestedData['time']        = $single_data->time;
                 $nestedData['date']        = current(explode(" ", current(explode('T', $single_data->created_at))));
                 $nestedData['status']      = $val;
                 $nestedData['action']      = $action;
@@ -217,6 +232,8 @@ class NewsController extends Controller
                 'top_category' => $value['top_category'],
                 'sub_category' => $value['sub_category'],
                 'heading'      => $value['heading'],
+                'author'       => $value['author'],
+                'time'         => $value['time'],
                 'image'        => $value['image'],
                 'short_desc'   => $value['short_desc'],
                 'long_desc'    => $value['long_desc'],
@@ -258,6 +275,8 @@ class NewsController extends Controller
             'top_category' => 'required|numeric',
             'file'         => 'image|mimes:jpeg,png,jpg,gif,svg',
             'heading'      => 'required',
+            'author'       => 'required',
+            'time'         => 'required',
             'short_desc'   => 'required',
             'long_desc'    => 'required',
         ]);
@@ -273,6 +292,8 @@ class NewsController extends Controller
                         'heading' => $request->input('heading'),
                         'short_desc' => $request->input('short_desc'),
                         'long_desc' => $request->input('long_desc'),
+                        'author' => $request->input('author'),
+                        'time' => $request->input('time'),
                     ]);
 
         if ($request->has('sub_category')) {
@@ -297,19 +318,26 @@ class NewsController extends Controller
 
             if(!File::exists(public_path()."/assets/medium_img"))
                 File::makeDirectory(public_path()."/assets/medium_img");
+            
+            if(!File::exists(public_path()."/assets/medium_img_index_page"))
+                File::makeDirectory(public_path()."/assets/medium_img_index_page");
 
             if(!File::exists(public_path()."/assets/small_img"))
                 File::makeDirectory(public_path()."/assets/small_img");
 
             File::delete(public_path("assets/big_img/".$news[0]->image));
             File::delete(public_path("assets/medium_img/".$news[0]->image));
+            File::delete(public_path("assets/medium_img_index_page/".$news[0]->image));
             File::delete(public_path("assets/small_img/".$news[0]->image));
 
             $image_resize->resize(770, 400);
             $image_resize->save(public_path("assets/big_img/".$file_name));
 
-            $image_resize->resize(270, 230);
+            $image_resize->resize(370, 230);
             $image_resize->save(public_path("assets/medium_img/".$file_name));
+
+            $image_resize->resize(270, 230);
+            $image_resize->save(public_path("assets/medium_img_index_page/".$file_name));
 
             $image_resize->resize(130, 130);
             $image_resize->save(public_path("assets/small_img/".$file_name));
@@ -341,6 +369,7 @@ class NewsController extends Controller
 
         File::delete(public_path("assets/big_img/".$news[0]->image));
         File::delete(public_path("assets/medium_img/".$news[0]->image));
+        File::delete(public_path("assets/medium_img_index_page/".$news[0]->image));
         File::delete(public_path("assets/small_img/".$news[0]->image));
 
         DB::table('assamese_news')

@@ -19,6 +19,8 @@ class CreateAssameseNewsTable extends Migration
             $table->integer('sub_category_id')->nullable();
             $table->string('image');
             $table->string('heading')->collation('utf8_unicode_ci');
+            $table->string('author')->collation('utf8_unicode_ci');
+            $table->string('time');
             $table->text('short_desc')->collation('utf8_unicode_ci');
             $table->text('long_desc')->collation('utf8_unicode_ci');
             $table->integer('status')->default(0)->comment('1 = Publish, 0 = Un-Publish');
