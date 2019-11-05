@@ -96,29 +96,29 @@
     <!-- Footer Area Section End Here -->
     
     <!-- all js here -->
-    <script src="{{ asset('web/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/jquery.min.js') }}"></script>
     <!-- jquery latest version -->
-    <script src="{{ asset('web/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/jquery.min.js') }}"></script>
     <!-- jquery-ui js -->
-    <script src="{{ asset('web/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/jquery-ui.min.js') }}"></script>
     <!-- bootstrap js -->
-    <script src="{{ asset('web/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/bootstrap.min.js') }}"></script>
     <!-- meanmenu js -->
-    <script src="{{ asset('web/js/jquery.meanmenu.js') }}"></script>
+    <script src="{{ asset('web/english/js/jquery.meanmenu.js') }}"></script>
     <!-- wow js -->
-    <script src="{{ asset('web/js/wow.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/wow.min.js') }}"></script>
     <!-- owl.carousel js -->
-    <script src="{{ asset('web/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/owl.carousel.min.js') }}"></script>
     <!-- magnific-popup js -->
-    <script src="{{ asset('web/js/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ asset('web/english/js/jquery.magnific-popup.js') }}"></script>
     
     <!-- jquery.counterup js -->
-    <script src="{{ asset('web/js/jquery.counterup.min.js') }}"></script>
-    <script src="{{ asset('web/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/waypoints.min.js') }}"></script>
     <!-- jquery light box -->
-    <script src="{{ asset('web/js/lightbox.min.js') }}"></script>
+    <script src="{{ asset('web/english/js/lightbox.min.js') }}"></script>
     <!-- main js -->
-    <script src="{{ asset('web/js/main.js') }}"></script>
+    <script src="{{ asset('web/english/js/main.js') }}"></script>
     <!-- Load Facebook SDK for JavaScript -->
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
