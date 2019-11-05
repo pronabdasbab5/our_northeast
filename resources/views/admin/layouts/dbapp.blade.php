@@ -66,26 +66,120 @@
                     <a href="{{ route('home') }}"><i class="fa fa-home"></i> Home </a>
                   </li>
                   <li>
-                    <a><i class="fa fa-edit"></i> Manage Top-Category <span class="fa fa-chevron-down"></span></a>
+                    <a><i class="fa fa-edit"></i> Assamese News <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('english_tcategory') }}">English Top-Category</a></li>
-                        <li><a href="{{ route('assamese_tcategory') }}">Assamese Top-Category</a></li>
+                        <li><a href="{{ route('assamese_new_news_post') }}">New Post</a></li>
+                        <li><a href="{{ route('all_assamese_news_post') }}">All Post</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a><i class="fa fa-edit"></i> English News <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('english_new_news_post') }}">New Post</a></li>
+                        <li><a href="{{ route('all_english_news_post') }}">All Post</a></li>
                     </ul>
                   </li> 
-                  <li>
+                  <li><a><i class="fa fa-edit"></i> Positive News <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a>Assamese<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="{{ route('assamese_positive_new_news_post') }}">New Post</a>
+                            </li>
+                            <li><a href="{{ route('all_assamese_positive_news_post') }}">All Post</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a>English<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="{{ route('english_positive_new_news_post') }}">New Post</a>
+                            </li>
+                            <li><a href="{{ route('all_english_positive_news_post') }}">All Post</a>
+                            </li>
+                          </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-edit"></i> Left-Center-Right News <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a>Assamese<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="{{ route('assamese_lcr_new_news_post') }}">New Post</a>
+                            </li>
+                            <li><a href="{{ route('all_assamese_lcr_news_post') }}">All Post</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a>English<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="{{ route('english_lcr_new_news_post') }}">New Post</a>
+                            </li>
+                            <li><a href="{{ route('all_english_lcr_news_post') }}">All Post</a>
+                            </li>
+                          </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-edit"></i> Transform News <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a>Assamese<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="{{ route('assamese_transform_new_news_post') }}">New Post</a>
+                            </li>
+                            <li><a href="{{ route('all_assamese_transform_news_post') }}">All Post</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a>English<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="{{ route('english_transform_new_news_post') }}">New Post</a>
+                            </li>
+                            <li><a href="{{ route('all_english_transform_news_post') }}">All Post</a>
+                            </li>
+                          </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    <li>
+                    <a><i class="fa fa-edit"></i> Upload Video <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('new_video') }}">New Video</a></li>
+                        <li><a href="{{ route('all_video') }}">All Videos</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i> Manage Category<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a>Assamese<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="{{ route('assamese_tcategory') }}">Top-Category</a>
+                            </li>
+                            <li><a href="{{ route('assamese_scategory') }}">Sub-Category</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a>English<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li><a href="{{ route('english_tcategory') }}">Top-Category</a>
+                            </li>
+                            <li><a href="{{ route('english_scategory') }}">Sub-Category</a>
+                            </li>
+                          </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    {{-- <li>
                     <a><i class="fa fa-edit"></i> Manage Sub-Category <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{ route('english_scategory') }}">English Sub-Category</a></li>
                         <li><a href="{{ route('assamese_scategory') }}">Assamese Sub-Category</a></li>
                     </ul>
-                  </li>  
-                  <li>
-                    <a><i class="fa fa-edit"></i> Assamese News <span class="fa fa-chevron-down"></span></a>
+                  </li> --}}
+                    {{-- <li>
+                    <a><i class="fa fa-edit"></i> Manage Top-Category <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('assamese_new_news_post') }}">New Post</a></li>
-                        <li><a href="#">All Post</a></li>
+                        <li><a href="{{ route('english_tcategory') }}">English Top-Category</a></li>
+                        <li><a href="{{ route('assamese_tcategory') }}">Assamese Top-Category</a></li>
                     </ul>
-                  </li>  
+                  </li>  --}}
                 </ul>
               </div>
 
