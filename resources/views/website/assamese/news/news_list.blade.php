@@ -24,7 +24,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <ul class="blog-image-gap">
                                     <li>
-                                        <h3><a href="{{ route('news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a></h3>
+                                        <h3><a class="line-clamp-1" href="{{ route('news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a></h3>
                                         <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->author }}</a></span>
                                         <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($item->created_at)->format('M d Y') }}</span>
                                         

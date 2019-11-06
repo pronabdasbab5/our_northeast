@@ -70,7 +70,7 @@
 		                                                        <a href="{{ route('news_detail', ['news_id' => encrypt($item->id) ]) }}"><img src="{{ asset('assets/small_img/'.$item->image.'') }}" alt="" title="News image"></a>
 		                                                    </div>
 		                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-		                                                        <h4><a href="{{ route('news_detail', ['news_id' => encrypt($item->id) ]) }}"> {{ $item->heading }}</a></h4>
+		                                                        <h4><a class="line-clamp-3" href="{{ route('news_detail', ['news_id' => encrypt($item->id) ]) }}"> {{ $item->heading }}</a></h4>
 		                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($item->created_at)->format('M d Y') }}</span>
 		                                                        <span class="duration" style="padding-left: 5px;"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }} </span>
 		                                                    </div>
@@ -137,7 +137,7 @@
 	                    <a href="{{ route('news_detail', ['news_id' => encrypt($item->id) ]) }}"><img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="Blog single photo"></a>                                   
 	                </div>                                
 	                <h3>
-	                    <a href="{{ route('news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a>
+	                    <a class="line-clamp-2" href="{{ route('news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a>
 	                </h3>
 	                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($item->created_at)->format('M d Y') }}</span>
 	                <span class="duration" style="padding-left: 10px;"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }} </span>

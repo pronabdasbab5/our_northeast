@@ -15,7 +15,7 @@
                             <div class="list-col">
                                 <a href="news-details.php"> <img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="" title="Trending image" width="370" height="230"></a>
                                 <div class="dsc">
-                                    <p><a href="news-details.php">{{ $item->heading }} </a></p>
+                                    <p><a class="line-clamp-2" href="news-details.php">{{ $item->heading }} </a></p>
                                 </div>
                             </div>
                         @endforeach
@@ -26,7 +26,7 @@
                         <!-- Wrapper for slides -->
                         <!-- Left and right controls -->
                         <div class="">
-                            <div class="row">
+                            <div class="row overflowing-row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="view-area">
                                         <h3 class="">POSITIVE NEWS</h3>
@@ -53,8 +53,8 @@
                                                 </a>
                                             </span> -->
                                             <span class="duration"><a href="news-details.php"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }}</a></span>
-                                            <h4><a href="news-details.php"> {{ $item->heading }}</a></h4>
-                                            <p>{{ $item->short_desc }}</p>
+                                            <h4><a class="line-clamp-2" href="news-details.php"> {{ $item->heading }}</a></h4>
+                                            <p class="line-clamp-2">{{ $item->short_desc }}</p>
                                         </div>
                                     </div>  
                                     @php
@@ -87,7 +87,7 @@
                             <div class="list-col">
                                 <a href="news-details.php"> <img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="" title="Trending image" width="370" height="230"></a>
                                 <div class="dsc">
-                                    <p><a href="news-details.php">{{ $item->heading }} </a></p>
+                                    <p><a class="line-clamp-3" href="news-details.php">{{ $item->heading }} </a></p>
                                 </div>
                             </div>
                         @endforeach
@@ -203,7 +203,7 @@
                                                     </div>
                                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
                                                         <p class="catogory">{{ $item->sub_category }}</p>
-                                                        <h4><a href="#">{{ $item->heading }}</a></h4>
+                                                        <h4><a class="line-clamp-3" href="#">{{ $item->heading }}</a></h4>
                                                         <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->author }}</a></span> 
                                                         <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($latest_video->created_at)->format('M d Y') }}</span>
                                                         <span class="duration"><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }}</a></span>
