@@ -127,10 +127,10 @@
     </div>    
     <!-- Fetuered videos End Here -->
     <div class="like-section container">
-        <h3 style="margin:0;padding: 6px 14px; margin-bottom: 10px; width: 20%;background: #eaea4c;text-align: center;">Positive News</h3>
+        <h3 style="margin:0;padding: 6px 14px; margin-bottom: 10px; width: 20%;background: #eaea4c;text-align: center;">Latest News</h3>
         <div class="row" style="color: #101010;">
-        	@if(count($latest_four_english_positive_news))
-        		@foreach($latest_four_english_positive_news as $key => $item)
+        	@if(count($latest_four_english_news))
+        		@foreach($latest_four_english_news as $key => $item)
 	            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 	                <div class="popular-post-img">
 	                    <a href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}"><img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="Blog single photo"></a>                                   

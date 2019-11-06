@@ -77,9 +77,9 @@ class IndexController extends Controller
             ->where('id', $news_id)
             ->get();
 
-        $assamese_latest_three_records = DB::table('assamese_news')
+        $assamese_latest_four_records = DB::table('assamese_news')
             ->orderBy('id', 'desc')
-            ->take(3)
+            ->take(4)
             ->get();
 
         $all_video = DB::table('video')
@@ -88,12 +88,12 @@ class IndexController extends Controller
                             ->take(9)
                             ->get();
 
-        $latest_four_assamese_positive_news = DB::table('positive_assamese_news')
+        $latest_three_assamese_positive_news = DB::table('positive_assamese_news')
             ->orderBy('id', 'desc')
             ->take(3)
             ->get();
 
-        return view('website.assamese.news.news_detail', ['assamese_latest_three_records' => $assamese_latest_three_records, 'assamese_news_single_record' => $assamese_news_single_record, 'all_video' => $all_video, 'latest_four_assamese_positive_news' => $latest_four_assamese_positive_news]);
+        return view('website.assamese.news.news_detail', ['assamese_latest_four_records' => $assamese_latest_four_records, 'assamese_news_single_record' => $assamese_news_single_record, 'all_video' => $all_video, 'latest_three_assamese_positive_news' => $latest_three_assamese_positive_news]);
     }
 
     public function positiveNewsList($top_category_id) {
@@ -119,12 +119,12 @@ class IndexController extends Controller
                             ->take(9)
                             ->get();
 
-        $latest_four_assamese_positive_news = DB::table('positive_assamese_news')
+        $latest_four_assamese_news = DB::table('assamese_news')
             ->orderBy('id', 'desc')
-            ->take(3)
+            ->take(4)
             ->get();
 
-        return view('website.assamese.positive_news.positive_news_list', ['all_positive_assamese_news' => $all_positive_assamese_news, 'latest_tow_positive_assamese_news' => $latest_tow_positive_assamese_news, 'all_video' => $all_video, 'latest_four_assamese_positive_news' => $latest_four_assamese_positive_news]);
+        return view('website.assamese.positive_news.positive_news_list', ['all_positive_assamese_news' => $all_positive_assamese_news, 'latest_tow_positive_assamese_news' => $latest_tow_positive_assamese_news, 'all_video' => $all_video, 'latest_four_assamese_news' => $latest_four_assamese_news]);
     }
 
     public function positiveNewsDetail($positive_news_id) {
@@ -149,12 +149,12 @@ class IndexController extends Controller
                             ->take(9)
                             ->get();
 
-        $latest_four_assamese_positive_news = DB::table('positive_assamese_news')
+        $latest_four_assamese_news = DB::table('assamese_news')
             ->orderBy('id', 'desc')
-            ->take(3)
+            ->take(4)
             ->get();
 
-        return view('website.assamese.positive_news.positive_news_detail', ['positive_assamese_latest_three_records' => $positive_assamese_latest_three_records, 'positive_assamese_news_single_record' => $positive_assamese_news_single_record, 'all_video' => $all_video, 'latest_four_assamese_positive_news' => $latest_four_assamese_positive_news]);
+        return view('website.assamese.positive_news.positive_news_detail', ['positive_assamese_latest_three_records' => $positive_assamese_latest_three_records, 'positive_assamese_news_single_record' => $positive_assamese_news_single_record, 'all_video' => $all_video, 'latest_four_assamese_news' => $latest_four_assamese_news]);
     }
 
     public function leftcenterrightNewsList($top_category_id) {

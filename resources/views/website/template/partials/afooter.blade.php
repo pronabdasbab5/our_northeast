@@ -40,7 +40,7 @@
                                         <p><a href="#">About Us</a></p>
                                     </li>
                                     <li>
-                                        <p><a href="ContactUs">Contact Us</a></p>
+                                        <p><a href="{{ route('contact_form') }}">Contact Us</a></p>
                                     </li>
                                 </ul>
                             </nav>
@@ -63,8 +63,8 @@
                                     <a>demo@example.com</a>
                                 </li>
                             </ul>
-                            <a href="#" class="btn footer-join-donate">সংযুক্ত হওঁক</a>
-                            <a href="Donate" class="btn footer-join-donate">বৰঙনি</a>
+                            <a href="{{ route('joining_people') }}" class="btn footer-join-donate">সংযুক্ত হওঁক</a>
+                            <a href="#" class="btn footer-join-donate">বৰঙনি</a>
                         </div>
                     </div>
                     <!-- Footer From Flickr Section End Here -->

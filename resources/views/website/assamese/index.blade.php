@@ -170,8 +170,8 @@
         <div class="container">
             <div class="flex">
                 <h3 style="margin: 0;">10,00,000<br>video view and counting</h3>
-                <a href="#" class="btn">সংযুক্ত হওঁক</a>
-                <a href="Donate" class="btn">বৰঙনি</a>
+                <a href="{{ route('joining_people') }}" class="btn">সংযুক্ত হওঁক</a>
+                <a href="#" class="btn">বৰঙনি</a>
             </div>
         </div>
     </section>

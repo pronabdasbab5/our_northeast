@@ -92,9 +92,9 @@ class IndexController extends Controller
             ->where('id', $news_id)
             ->get();
 
-        $english_latest_three_records = DB::table('english_news')
+        $english_latest_four_records = DB::table('english_news')
             ->orderBy('id', 'desc')
-            ->take(3)
+            ->take(4)
             ->get();
 
         $all_video = DB::table('video')
@@ -103,12 +103,12 @@ class IndexController extends Controller
                             ->take(9)
                             ->get();
 
-        $latest_four_english_positive_news = DB::table('positive_english_news')
+        $latest_three_english_positive_news = DB::table('positive_english_news')
             ->orderBy('id', 'desc')
             ->take(3)
             ->get();
 
-        return view('website.english.news.news_detail', ['english_latest_three_records' => $english_latest_three_records, 'english_news_single_record' => $english_news_single_record, 'all_video' => $all_video, 'latest_four_english_positive_news' => $latest_four_english_positive_news]);
+        return view('website.english.news.news_detail', ['english_latest_four_records' => $english_latest_four_records, 'english_news_single_record' => $english_news_single_record, 'all_video' => $all_video, 'latest_three_english_positive_news' => $latest_three_english_positive_news]);
     }
 
     public function positiveNewsList($top_category_id) {
@@ -134,12 +134,12 @@ class IndexController extends Controller
                             ->take(9)
                             ->get();
 
-        $latest_four_english_positive_news = DB::table('positive_english_news')
+        $latest_four_english_news = DB::table('english_news')
             ->orderBy('id', 'desc')
             ->take(3)
             ->get();
 
-        return view('website.english.positive_news.positive_news_list', ['all_positive_english_news' => $all_positive_english_news, 'latest_tow_positive_english_news' => $latest_tow_positive_english_news, 'all_video' => $all_video, 'latest_four_english_positive_news' => $latest_four_english_positive_news]);
+        return view('website.english.positive_news.positive_news_list', ['all_positive_english_news' => $all_positive_english_news, 'latest_tow_positive_english_news' => $latest_tow_positive_english_news, 'all_video' => $all_video, 'latest_four_english_news' => $latest_four_english_news]);
     }
 
     public function positiveNewsDetail($positive_news_id) {
@@ -164,12 +164,12 @@ class IndexController extends Controller
                             ->take(9)
                             ->get();
 
-        $latest_four_english_positive_news = DB::table('positive_english_news')
+        $latest_four_english_news = DB::table('english_news')
             ->orderBy('id', 'desc')
-            ->take(3)
+            ->take(4)
             ->get();
 
-        return view('website.english.positive_news.positive_news_detail', ['positive_english_latest_three_records' => $positive_english_latest_three_records, 'positive_english_news_single_record' => $positive_english_news_single_record, 'all_video' => $all_video, 'latest_four_english_positive_news' => $latest_four_english_positive_news]);
+        return view('website.english.positive_news.positive_news_detail', ['positive_english_latest_three_records' => $positive_english_latest_three_records, 'positive_english_news_single_record' => $positive_english_news_single_record, 'all_video' => $all_video, 'latest_four_english_news' => $latest_four_english_news]);
     }
 
     public function leftcenterrightNewsList($top_category_id) {
