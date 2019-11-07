@@ -13,9 +13,9 @@
                     @if(count($english_second_latest_tow_records) > 0)
                         @foreach($english_second_latest_tow_records as $key => $item)
                             <div class="list-col">
-                                <a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}"> <img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="" title="Trending image" width="370" height="230"></a>
+                                <a href="news-details.php"> <img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="" title="Trending image" width="370" height="230"></a>
                                 <div class="dsc">
-                                    <p><a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }} </a></p>
+                                    <p><a href="news-details.php">{{ $item->heading }} </a></p>
                                 </div>
                             </div>
                         @endforeach
@@ -26,7 +26,7 @@
                         <!-- Wrapper for slides -->
                         <!-- Left and right controls -->
                         <div class="">
-                            <div class="row overflowing-row">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="view-area">
                                         <h3 class="">POSITIVE NEWS</h3>
@@ -42,7 +42,7 @@
                                 <!-- Item -->
                                 @foreach($latest_english_positive_news as $key => $item)
                                     <div class="item {{ ($slide_active_cnt == 1)? 'active': 'next' }} left">
-                                        <a href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}"><img src="{{ asset('assets/positive_news_index_page/'.$item->image.'') }}" alt="" title="#slider-direction-1"></a>
+                                        <a href="news-details.php"><img src="{{ asset('assets/positive_news_index_page/'.$item->image.'') }}" alt="" title="#slider-direction-1"></a>
                                         <div class="dsc">
                                             <span class="date">
                                                 <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
@@ -53,7 +53,7 @@
                                                 </a>
                                             </span> -->
                                             <span class="duration"><a href="news-details.php"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }}</a></span>
-                                            <h4><a href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}"> {{ $item->heading }}</a></h4>
+                                            <h4><a href="news-details.php"> {{ $item->heading }}</a></h4>
                                             <p>{{ $item->short_desc }}</p>
                                         </div>
                                     </div>  
@@ -85,13 +85,9 @@
                     @if(count($english_second_latest_tow_records) > 0)
                         @foreach($english_second_latest_tow_records as $key => $item)                    
                             <div class="list-col">
-                                <a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}"> <img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="" title="Trending image" width="370" height="230"></a>
+                                <a href="news-details.php"> <img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="" title="Trending image" width="370" height="230"></a>
                                 <div class="dsc">
-<<<<<<< HEAD
-                                    <p><a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }} </a></p>
-=======
-                                    <p><a class="line-clamp-3" href="news-details.php">{{ $item->heading }} </a></p>
->>>>>>> responsive
+                                    <p><a href="news-details.php">{{ $item->heading }} </a></p>
                                 </div>
                             </div>
                         @endforeach
@@ -174,8 +170,8 @@
         <div class="container">
             <div class="flex">
                 <h3 style="margin: 0;">10,00,000<br>video view and counting</h3>
-                <a href="{{ route('joining_people') }}" class="btn">Join</a>
-                <a href="#" class="btn">Donate</a>
+                <a href="#" class="btn">Join</a>
+                <a href="Donate" class="btn">Donate</a>
             </div>
         </div>
     </section>
@@ -203,15 +199,11 @@
                                             <li>
                                                 <div class="row">
                                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
-                                                        <a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}"><img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="News image" /></a>
+                                                        <a href="#"><img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="News image" /></a>
                                                     </div>
                                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
                                                         <p class="catogory">{{ $item->sub_category }}</p>
-<<<<<<< HEAD
-                                                        <h4><a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a></h4>
-=======
-                                                        <h4><a class="line-clamp-3" href="#">{{ $item->heading }}</a></h4>
->>>>>>> responsive
+                                                        <h4><a href="#">{{ $item->heading }}</a></h4>
                                                         <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->author }}</a></span> 
                                                         <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($latest_video->created_at)->format('M d Y') }}</span>
                                                         <span class="duration"><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }}</a></span>

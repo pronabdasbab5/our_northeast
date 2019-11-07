@@ -15,7 +15,11 @@
                             <div class="list-col">
                                 <a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}"> <img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="" title="Trending image" width="370" height="230"></a>
                                 <div class="dsc">
+<<<<<<< HEAD
                                     <p><a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }} </a></p>
+=======
+                                    <p><a class="line-clamp-2" href="news-details.php">{{ $item->heading }} </a></p>
+>>>>>>> responsive
                                 </div>
                             </div>
                         @endforeach
@@ -53,8 +57,13 @@
                                                 </a>
                                             </span> -->
                                             <span class="duration"><a href="news-details.php"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }}</a></span>
+<<<<<<< HEAD
                                             <h4><a href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}"> {{ $item->heading }}</a></h4>
                                             <p>{{ $item->short_desc }}</p>
+=======
+                                            <h4><a class="line-clamp-2" href="news-details.php"> {{ $item->heading }}</a></h4>
+                                            <p class="line-clamp-2">{{ $item->short_desc }}</p>
+>>>>>>> responsive
                                         </div>
                                     </div>  
                                     @php

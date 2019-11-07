@@ -26,7 +26,7 @@
                         <!-- Wrapper for slides -->
                         <!-- Left and right controls -->
                         <div class="">
-                            <div class="row overflowing-row">
+                            <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="view-area">
                                         <h3 class="">POSITIVE NEWS</h3>
@@ -87,11 +87,7 @@
                             <div class="list-col">
                                 <a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}"> <img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="" title="Trending image" width="370" height="230"></a>
                                 <div class="dsc">
-<<<<<<< HEAD
                                     <p><a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }} </a></p>
-=======
-                                    <p><a class="line-clamp-3" href="news-details.php">{{ $item->heading }} </a></p>
->>>>>>> responsive
                                 </div>
                             </div>
                         @endforeach
@@ -207,11 +203,7 @@
                                                     </div>
                                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
                                                         <p class="catogory">{{ $item->sub_category }}</p>
-<<<<<<< HEAD
                                                         <h4><a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a></h4>
-=======
-                                                        <h4><a class="line-clamp-3" href="#">{{ $item->heading }}</a></h4>
->>>>>>> responsive
                                                         <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->author }}</a></span> 
                                                         <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($latest_video->created_at)->format('M d Y') }}</span>
                                                         <span class="duration"><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }}</a></span>
