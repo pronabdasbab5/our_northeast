@@ -172,7 +172,6 @@
                         <div class="recent-post-area hot-news">
                             <h3 style="margin:0; margin-bottom: 10px;padding: 6px 14px;width: 50%;background: #eaea4c;text-align: center;">Positive News</h3>
                             <ul class="news-post">
-<<<<<<< HEAD
                                 @if(count($latest_three_english_positive_news) > 0)
                                     @foreach($latest_three_english_positive_news as $key => $item)
                                         <li>
@@ -195,30 +194,6 @@
                                         </li> 
                                     @endforeach
                                 @endif
-=======
-                            	@if(count($english_latest_three_records) > 0)
-                            		@foreach($english_latest_three_records as $key => $item)
-		                                <li>
-		                                    <div class="row">
-		                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-		                                            <div class="item-post">
-		                                                <div class="row">
-		                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
-		                                                        <a href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}"><img src="{{ asset('assets/small_img/'.$item->image.'') }}" alt="" title="News image"></a>
-		                                                    </div>
-		                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-		                                                        <h4><a class="line-clamp-3" href="{{ route('english.news_detail', ['news_id' => encrypt($item->id) ]) }}"> {{ $item->heading }}</a></h4>
-		                                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($item->created_at)->format('M d Y') }}</span>
-		                                                        <span class="duration" style="padding-left: 5px;"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }} </span>
-		                                                    </div>
-		                                                </div>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </li> 
-		                            @endforeach
-		                        @endif
->>>>>>> responsive
                             </ul>
                         </div>
                     </div>
@@ -268,7 +243,6 @@
     <div class="like-section container">
         <h3 style="margin:0;padding: 6px 14px;width: 20%; margin-bottom: 10px; background: #eaea4c; text-align: center;">Latest News</h3>
         <div class="row" style="color: #101010;">
-<<<<<<< HEAD
             @if(count($english_latest_four_records))
                 @foreach($english_latest_four_records as $key => $item)
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -283,22 +257,6 @@
                 </div>
                 @endforeach
             @endif
-=======
-        	@if(count($latest_four_english_positive_news))
-        		@foreach($latest_four_english_positive_news as $key => $item)
-	            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-	                <div class="popular-post-img">
-	                    <a href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}"><img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="Blog single photo"></a>                                   
-	                </div>                                
-	                <h3>
-	                    <a class="line-clamp-2" href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a>
-	                </h3>
-	                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($item->created_at)->format('M d Y') }}</span>
-	                <span class="duration" style="padding-left: 10px;"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }} </span>
-	            </div>
-	            @endforeach
-	        @endif
->>>>>>> responsive
         </div>
     </div>
     <footer>
