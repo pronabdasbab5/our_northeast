@@ -61,7 +61,7 @@
                         </div>    
                     </div>
                     <div class="logo">
-                        <a href="{{ route('index') }}"><img src="{{ asset('web/images/logo-header.png') }}" style="padding-bottom: 5px; margin-left: -25px;"></a>
+                        <a href="{{ route('english.index') }}"><img src="{{ asset('web/images/logo-header.png') }}" style="padding-bottom: 5px; margin-left: -25px;"></a>
                     </div>
                     <div class="main-menu navbar-collapse collapse">
                         <nav>

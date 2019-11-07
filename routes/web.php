@@ -176,5 +176,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('all_video', 'VideoController@allVideo')->name('all_video');
             Route::get('delete_video/{videoId}', 'VideoController@deleteVideo')->name('delete_video');
         });
+
+        Route::namespace('JPeople')->group(function () {
+            Route::get('all_jpeople_form', 'JPeopleController@allJPeopleForm')->name('all_jpeople_form');
+            Route::post('all_jpeople_data', 'JPeopleController@allJPeopleData')->name('all_jpeople_data');
+            Route::get('delete_jpeople/{jpeople_id}', 'JPeopleController@deleteJPeople')->name('delete_jpeople');
+        });
     });
 });

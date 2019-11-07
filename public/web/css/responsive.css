@@ -1292,9 +1292,6 @@
 		.logo img .logo a, .logo {
 			display: none !important;
 		}
-		.sticky-header {
-			top: 20px !important;
-		}
 		.main-menu {
 			width: 80% !important;
 			margin-left: 20px !important;
@@ -1381,5 +1378,8 @@
 		}
 		.presenter-img p {
 			font-size: 14px !important;
+		}
+		.overflowing-row {
+			width: 100% !important;
 		}
 	}

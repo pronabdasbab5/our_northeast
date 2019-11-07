@@ -166,20 +166,9 @@
                         </li>
                         </ul>
                     </li>
-                    {{-- <li>
-                    <a><i class="fa fa-edit"></i> Manage Sub-Category <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="{{ route('english_scategory') }}">English Sub-Category</a></li>
-                        <li><a href="{{ route('assamese_scategory') }}">Assamese Sub-Category</a></li>
-                    </ul>
-                  </li> --}}
-                    {{-- <li>
-                    <a><i class="fa fa-edit"></i> Manage Top-Category <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="{{ route('english_tcategory') }}">English Top-Category</a></li>
-                        <li><a href="{{ route('assamese_tcategory') }}">Assamese Top-Category</a></li>
-                    </ul>
-                  </li>  --}}
+                    <li>
+                    <a href="{{ route('all_jpeople_form') }}"><i class="fa fa-edit"></i> Manage Joining People</a>
+                  </li>
                 </ul>
               </div>
 

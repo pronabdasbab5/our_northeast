@@ -1,5 +1,10 @@
 <?php
 
+Route::get('/clear-cache', function() {
+     Artisan::call('cache:clear');
+    // return what you want
+});
+
 Route::namespace('Website')->group(function () {
 	Route::namespace('Assamese')->group(function () {
     	/** News Section **/
@@ -39,6 +44,16 @@ Route::namespace('Website')->group(function () {
         /** Transform News Section **/
         Route::get('english_transform_news_list/{top_category_id}', 'IndexController@transformNewsList')->name('english_transform_news_list');
         Route::get('english_transform_news_detail/{transform_news_id}', 'IndexController@transformNewsDetail')->name('english_transform_news_detail');
+    });
+
+    Route::namespace('JPeople')->group(function () {
+        Route::get('joining_people', 'JPeopleController@showJPeopleForm')->name('joining_people');
+        Route::post('add_people', 'JPeopleController@addPeople')->name('add_people');
+    });
+
+    Route::namespace('Contact')->group(function () {
+        Route::get('contact_form', 'ContactController@showContactForm')->name('contact_form');
+        Route::post('send_email', 'ContactController@sendEmail')->name('send_email');
     });
 });
 ?>

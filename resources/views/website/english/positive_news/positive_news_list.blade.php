@@ -24,7 +24,7 @@
 	                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 	                            <ul class="blog-image-gap">
 	                                <li>
-	                                    <h3><a href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a></h3>
+	                                    <h3><a class="line-clamp-1" href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a></h3>
 	                                    <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->author }}</a></span>
 	                                    <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($item->created_at)->format('M d Y') }}</span>
 	                                    <span class="like"><a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>  12 </a></span>
@@ -64,7 +64,7 @@
                                                 <a href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}"><img src="{{ asset('assets/medium_img_index_page/'.$item->image.'') }}" alt="News image" /></a>
                                             </div>
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 content">
-                                                <h4><a href="blog-detail.php">{{ $item->heading }}</a></h4>
+                                                <h4><a class="line-clamp-3" href="blog-detail.php">{{ $item->heading }}</a></h4>
                                                 <span class="author"><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $item->author }}</a></span> 
                                                 <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($item->created_at)->format('M d Y') }}</span>
                                                 <span class="duration" style="padding-left: 10px;"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }} </span>
@@ -127,16 +127,16 @@
     </div>    
     <!-- Fetuered videos End Here -->
     <div class="like-section container">
-        <h3 style="margin:0;padding: 6px 14px; margin-bottom: 10px; width: 20%;background: #eaea4c;text-align: center;">Positive News</h3>
+        <h3 style="margin:0;padding: 6px 14px; margin-bottom: 10px; width: 20%;background: #eaea4c;text-align: center;">Latest News</h3>
         <div class="row" style="color: #101010;">
-        	@if(count($latest_four_english_positive_news))
-        		@foreach($latest_four_english_positive_news as $key => $item)
+        	@if(count($latest_four_english_news))
+        		@foreach($latest_four_english_news as $key => $item)
 	            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 	                <div class="popular-post-img">
 	                    <a href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}"><img src="{{ asset('assets/medium_img/'.$item->image.'') }}" alt="Blog single photo"></a>                                   
 	                </div>                                
 	                <h3>
-	                    <a href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a>
+	                    <a class="line-clamp-2" href="{{ route('english_positive_news_detail', ['positive_news_id' => encrypt($item->id) ]) }}">{{ $item->heading }}</a>
 	                </h3>
 	                <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ Carbon\Carbon::parse($item->created_at)->format('M d Y') }}</span>
 	                <span class="duration" style="padding-left: 10px;"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $item->time }} </span>

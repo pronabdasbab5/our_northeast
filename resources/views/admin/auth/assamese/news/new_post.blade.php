@@ -90,7 +90,7 @@
                         <div class="form-row mb-10">
                             <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                 <label for="category">Short Description</label>
-                                <textarea class="form-control" id="post_desc" name="short_desc" placeholder="Short Description">{{ old('short_desc') }}</textarea>
+                                <textarea class="form-control" name="short_desc"  placeholder="Short Description">{{ old('short_desc') }}</textarea>
                                 @if($errors->has('short_desc'))
                                     <span class="invalid-feedback" role="alert" style="color:red">
                                         <strong>{{ $errors->first('short_desc') }}</strong>
@@ -103,7 +103,7 @@
                         <div class="form-row mb-10">
                             <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
                                 <label for="category">Long Description</label>
-                                <textarea class="form-control" id="post_desc1" name="long_desc" placeholder="Long Description">{{ old('long_desc') }}</textarea>
+                                <textarea class="form-control description" name="long_desc" placeholder="Long Description">{{ old('long_desc') }}</textarea>
                                 @if($errors->has('long_desc'))
                                     <span class="invalid-feedback" role="alert" style="color:red">
                                         <strong>{{ $errors->first('long_desc') }}</strong>
